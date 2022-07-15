@@ -1,0 +1,54 @@
+<article class="post">
+  <header>
+    <nav>
+      <%= image_tag "default-avatar.jpg", class: "photo" %>
+      <h4><%= post.created_by.username %></h4>
+    </nav>
+
+    <nav class="actions">
+      <div class="action">
+        <%= embedded_svg "options.svg" %>
+      </div>
+    </nav>
+  </header>
+
+  <section class="image">
+    <%= image_tag "https://i.pinimg.com/736x/e3/d2/41/e3d24129f757ce0d971243d2262d4803.jpg" %>
+  </section>
+
+  <div class="details">
+    <section class="actions">
+      <nav>
+        <div class="action">
+          <div class="like">
+            <%= embedded_svg "like.svg" %>
+          </div>
+
+          <div class="like">
+            <%= link_to post do %>
+              <%= embedded_svg "comment.svg" %>
+            <% end %>
+          </div>
+
+          <div class="like">
+            <%= embedded_svg "share.svg" %>
+          </div>
+        </div>
+      </nav>
+
+      <nav>
+        <div class="action">
+          <%= embedded_svg "save.svg" %>
+        </div>
+      </nav>
+    </section>
+
+    <section class="description">
+      <p><strong><%= post.created_by.username %></strong> <%= post.description %></p>
+    </section>
+
+    <section class="created_at">
+      <%= time_ago_in_words(post.created_at) %> atrás
+    </section>
+  </div>
+</article>
