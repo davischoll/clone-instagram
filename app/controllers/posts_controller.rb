@@ -5,7 +5,7 @@ class PostsController < ApplicationController
   before_action :set_suggested_users, only: %i[index]
 
   def index
-    @posts = Post.all
+    @posts = Post.all.where.not(created_by_id: current_user.id).order(created_at: :desc)
   end
 
   def show
@@ -33,6 +33,6 @@ class PostsController < ApplicationController
   end
 
   def post_params
-    params.require(:post).permit(:description)
+    params.require(:post).permit(:photo, :description)
   end
 end
