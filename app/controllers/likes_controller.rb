@@ -1,4 +1,6 @@
 class LikesController < ApplicationController
+  before_action :set_like, only: %i[destroy]
+
   def create
     like = current_user.likes.build(like_params)
 
@@ -9,10 +11,15 @@ class LikesController < ApplicationController
     end
   end
 
-  # def destroy
-  # end
+  def destroy
+    render json: { successful: @like.destroy }
+  end
 
   private
+
+  def set_like
+    @like = current_user.likes.find(params[:id])
+  end
 
   def like_params
     params.require(:like).permit(:post_id)
